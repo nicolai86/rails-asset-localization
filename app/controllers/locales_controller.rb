@@ -1,7 +1,7 @@
 module JqueryLocalizationEngine
   class LocalesController < ::ApplicationController
-    def index
-      logger.debug "jquery-localize"
+    def locale
+      logger.debug "jquery-localize for #{params[:locale]}"
     end
   end
 end
