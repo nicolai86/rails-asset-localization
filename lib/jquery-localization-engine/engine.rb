@@ -1,6 +1,8 @@
 module JqueryLocalizationEngine
   class Engine < Rails::Engine
-    initialize "jquery-localization" do |app|
+    initialize "jquery-localization.app" do |app|
+      JqueryLocalizationEngine.setup do |config|
+      end
     end
   end
 end
