@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  root :to => 'locales#index'
+  get "locales" => "jquery_localization_engine/locales#index" , :as => :locales
 end
