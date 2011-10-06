@@ -4,7 +4,6 @@ class LocalesController < ::ApplicationController
     locale = $1 if locale =~ /(\w+)\-(\w+)/
 
     respond_to do |format|
-      format.js { render json: I18n.backend.send(:translations)[locale.to_sym].to_json }
       format.json { render json: I18n.backend.send(:translations)[locale.to_sym].to_json }
     end
   end
