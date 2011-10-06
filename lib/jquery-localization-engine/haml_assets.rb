@@ -1,17 +1,3 @@
-module JqueryLocalizationEngine
-  module HamlAssets
-    def t(key, options = {})
-      trans = I18n.translate key, options
-      content_tag(:span, trans, rel: "localize[#{key}]")
-    end
-
-    def foo(key, options = {})
-      trans = I18n.translate key, options
-      content_tag(:span, trans, rel: "localize[#{key}]")
-    end
-  end
-end
-
 module HamlAssets
   class HamlSprocketsEngine < Tilt::Template
     protected
@@ -28,6 +14,8 @@ module HamlAssets
                 trans = I18n.translate key, options
                 content_tag(:span, trans, rel: "localize[#{key}]")
               end
+
+              alias :t :translate
             end
 
           }
