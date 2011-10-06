@@ -5,3 +5,4 @@ module JqueryLocalizationEngine
 end
 
 require 'jquery-localization-engine/engine'
+require 'jquery-localization-engine/haml_assets'
