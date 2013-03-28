@@ -1,4 +1,4 @@
-# JqueryLocalizationEngine
+# RailsAssetLocalization
 
 A Rails Engine that allows you to use i18next with your locales. Locales are served dynamically to allow easy integration with services like [CopyCopter][1].
 
