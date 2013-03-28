@@ -8,7 +8,7 @@ module RailsAssetLocalization
 
       I18n.backend.send(:init_translations)
 
-      respond_with I18n.backend.send(:translations)[locale.to_sym].to_json
+      respond_with (I18n.backend.send(:translations)[locale.to_sym] || {}).to_json
     end
   end
 end
