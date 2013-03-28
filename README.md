@@ -1,6 +1,6 @@
 # RailsAssetLocalization
 
-A Rails Engine that allows you to use i18next with your locales. Locales are served dynamically to allow easy integration with services like [CopyCopter][1].
+A Rails Engine that allows you to use i18next with the asset pipeline. Locales are served dynamically to allow easy integration with services like [CopyCopter][1].
 
 ## Example Setup
 
@@ -38,7 +38,7 @@ Now you can use it everywhere in your asset pipeline - see [i18next dokumentatio
 
 ## HandlebarsAsset integration
 
-If you are using @leshill s [handlebars_assets][3] you might want to use a handlebars helper function to use it inside your views
+If you are using @leshill s [handlebars_assets][3] you might want to use a handlebars helper function to use it inside your views.
 This will get you started:
 
 ``` coffeescript
