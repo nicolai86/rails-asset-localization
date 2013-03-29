@@ -6,9 +6,8 @@ module RailsAssetLocalization
       locale = params.fetch(:locale) { I18n.default_locale.to_s }
       locale = $1 if locale =~ /(\w+)\-(\w+)/
 
-      I18n.backend.send(:init_translations)
-
-      respond_with (I18n.backend.send(:translations)[locale.to_sym] || {}).to_json
+      locales_exporter = ::RailsAssetLocalization::LocalesExporter.new
+      respond_with (locales_exporter.translations[locale.to_sym] || {}).to_json
     end
   end
 end

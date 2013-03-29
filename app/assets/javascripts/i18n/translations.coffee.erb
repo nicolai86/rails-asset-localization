@@ -1,11 +1,11 @@
 locales = {}
 
 <%
-  I18n.backend.send(:init_translations)
+  locales_exporter = ::RailsAssetLocalization::LocalesExporter.new
   I18n.available_locales.uniq.each do |locale|
 %>
 locales['<%= locale %>'] = {}
-locales['<%= locale %>']['translation'] = <%= I18n.backend.send(:translations)[locale.to_sym].to_json %>
+locales['<%= locale %>']['translation'] = <%= locales_exporter.translations[locale.to_sym].to_json %>
 <%
   end
 %>

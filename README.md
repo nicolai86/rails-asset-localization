@@ -15,7 +15,10 @@ Now you need to configure I18next:
 ``` coffeescript
 # inside your application.coffee
 #= require i18next.min # or i18next for development version
-...
+```
+
+``` coffeescript
+# inside your app startup code
 locale = "de"
 i18n.init({
   # change default interpolation from __VARIABLE__ to rails-style %{VARIABLE}
