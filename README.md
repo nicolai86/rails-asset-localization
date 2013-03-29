@@ -10,13 +10,13 @@ Add this to your `Gemfile`:
 
 Your locales are now available under `/locales/:locale`
 
-Now you need to configure I18next:
-
+Now you need to load i18next:
 ``` coffeescript
 # inside your application.coffee
 #= require i18next.min # or i18next for development version
 ```
 
+and properly configure it to work with your rails locales:
 ``` coffeescript
 # inside your app startup code
 locale = "de"
@@ -29,7 +29,7 @@ i18n.init({
   lng: locale
 
   # rails-asset-localization path
-  resGetPath: 'locales/%{lng}.json'
+  resGetPath: '/locales/%{lng}.json'
 
   # store locales for 1 day in localStorage
   useLocalStorage: true
@@ -39,15 +39,19 @@ i18n.init({
 
 Now you can use it everywhere in your asset pipeline - see [i18next dokumentation][2] for details.
 
-## Advanced Setup
+## Advanced Setup: precompiled assets
 
-To allow instant access to your locales you can include them into your compiled assets:
+You might want to serve a static version of your assets to enable users to access your localization without incurring additional network requests.
 
+First, load your latest locales into the asset pipeline:
 ``` coffeescript
 # inside your application.coffee
 #= require i18next.min
 #= require i18n/translations
-...
+```
+
+Next, instruct i18next to store the bundled locales locally
+``` coffeescript
 for bundledLocale of bundledLocales
   storedLocale = window.localStorage.getItem("res_#{bundledLocale}")?
   unless storedLocale?
@@ -56,11 +60,13 @@ for bundledLocale of bundledLocales
     i18n.sync._storeLocal object
 ```
 
-Your locales are exported to the `window.bundledLocales` variable, which is used to populate the `localStorage` if not already present. The next time your `localStorageExpirationTime` kicks in the locales will be replaced by i18next.
+Lastly, initialize i18next like described above
 
-## HandlebarsAsset integration
+This way your locales are instantly accessible. The next time the i18next updates all locales (your cached locales need to be older than `localStorageExpirationTime` ms) the locales are updated and voilà. Your user sees new content.
 
-If you are using @leshill s [handlebars_assets][3] you might want to use a handlebars helper function to use it inside your views.
+## Advanced Setup: HandlebarsAsset integration
+
+If you are using @leshill awesome [handlebars_assets][3] you might want to use a handlebars helper function to use it inside your views.
 This will get you started:
 
 ``` coffeescript
