@@ -2,7 +2,7 @@ locales = {}
 
 <%
   I18n.backend.send(:init_translations)
-  I18n.available_locales.each do |locale|
+  I18n.available_locales.uniq.each do |locale|
 %>
 locales['<%= locale %>'] = {}
 locales['<%= locale %>']['translation'] = <%= I18n.backend.send(:translations)[locale.to_sym].to_json %>
