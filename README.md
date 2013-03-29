@@ -2,7 +2,7 @@
 
 A Rails Engine that allows you to use i18next with the asset pipeline. Locales are served dynamically to allow easy integration with services like [CopyCopter][1].
 
-## Example Setup
+## Basic Setup
 
 Add this to your `Gemfile`:
 
@@ -14,8 +14,8 @@ Now you need to configure I18next:
 
 ``` coffeescript
 # inside your application.coffee
-#= require i18next.min
-…
+#= require i18next.min # or i18next for development version
+...
 locale = "de"
 i18n.init({
   # change default interpolation from __VARIABLE__ to rails-style %{VARIABLE}
@@ -34,7 +34,26 @@ i18n.init({
 })
 ```
 
-Now you can use it everywhere in your asset pipeline - see [i18next dokumentation][2] for details
+Now you can use it everywhere in your asset pipeline - see [i18next dokumentation][2] for details.
+
+## Advanced Setup
+
+To allow instant access to your locales you can include them into your compiled assets:
+
+``` coffeescript
+# inside your application.coffee
+#= require i18next.min
+#= require i18n/translations
+...
+for bundledLocale of bundledLocales
+  storedLocale = window.localStorage.getItem("res_#{bundledLocale}")?
+  unless storedLocale?
+    object = {}
+    object[bundledLocale] = bundledLocales[bundledLocale]
+    i18n.sync._storeLocal object
+```
+
+Your locales are exported to the `window.bundledLocales` variable, which is used to populate the `localStorage` if not already present. The next time your `localStorageExpirationTime` kicks in the locales will be replaced by i18next.
 
 ## HandlebarsAsset integration
 
