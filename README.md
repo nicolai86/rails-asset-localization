@@ -1,5 +1,7 @@
 # RailsAssetLocalization
 
+[![Gem Version](https://badge.fury.io/rb/rails-asset-localization.png)](http://badge.fury.io/rb/rails-asset-localization)
+
 A Rails Engine that allows you to use i18next with the asset pipeline. Locales are served dynamically to allow easy integration with services like [CopyCopter][1].
 
 ## Basic Setup
