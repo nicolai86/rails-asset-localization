@@ -15,6 +15,9 @@ module RailsAssetLocalization
       else
         I18n.backend.send(:translations)
       end
+    rescue => e
+      Rails.logger.warn e
+      return ""
     end
   end
 end
