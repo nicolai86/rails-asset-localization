@@ -16,4 +16,12 @@ class LocalesControllerTest < ActionDispatch::IntegrationTest
     assert locales.keys.include?("hello")
     assert_equal "Hello world", locales["hello"]
   end
+
+  test "returns empty hash for unknown locales" do
+    get "/locales/fr.json"
+    assert_response :success
+
+    locales = JSON.parse response.body
+    assert locales.empty?
+  end
 end
