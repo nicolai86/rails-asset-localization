@@ -8,7 +8,15 @@ A Rails Engine that allows you to use i18next with the asset pipeline. Locales a
 
 Add this to your `Gemfile`:
 
-    gem 'rails-asset-localization', git: 'git@github.com:nicolai86/rails-asset-localization.git', branch: :master
+``` ruby
+gem 'rails-asset-localization', git: 'git@github.com:nicolai86/rails-asset-localization.git', branch: :master
+```
+
+and this to your `routes`:
+
+``` ruby
+mount RailsAssetLocalization::Engine => "/locales"
+```
 
 Your locales are now available under `/locales/:locale`
 
