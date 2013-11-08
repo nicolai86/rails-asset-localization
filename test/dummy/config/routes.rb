@@ -1,4 +1,5 @@
 Dummy::Application.routes.draw do
+  mount RailsAssetLocalization::Engine => "/locales"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

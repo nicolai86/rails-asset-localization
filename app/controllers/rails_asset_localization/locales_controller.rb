@@ -7,7 +7,8 @@ module RailsAssetLocalization
       locale = $1 if locale =~ /(\w+)\-(\w+)/
 
       locales_exporter = ::RailsAssetLocalization::LocalesExporter.new
-      respond_with (locales_exporter.translations[locale.to_sym] || {}).to_json
+      locales = (locales_exporter.translations[locale.to_sym] || {})
+      respond_with locales
     end
   end
 end
