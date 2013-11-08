@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails-asset-localization (0.1.0)
+    rails-asset-localization (0.2.0)
       rails (> 3.2.12, < 5.0)
 
 GEM
