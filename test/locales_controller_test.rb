@@ -31,4 +31,11 @@ class LocalesControllerTest < ActionDispatch::IntegrationTest
     assert_equal %w(hello), locales.keys
     assert_equal "Hallo Welt", locales["hello"]
   end
+
+  test "works for existing country codes as well" do
+    get "/locales/nl-BE.json"
+    locales = JSON.parse response.body
+    assert_equal %w(hello), locales.keys
+    assert_equal "Hallo Wereld", locales["hello"]
+  end
 end
